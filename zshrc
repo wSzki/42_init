@@ -209,12 +209,21 @@ function mc         {  clam matrix-commander --store ~/.config/matrix-commander/
 alias    chloe="mc -u ploupi -m"
 #function tuir       { cap tuir}
 
+function gitap
+{
+	git add .
+	git status
+	git commit -m $@
+	git push
+
+}
+
 function back {
-	cd ~/.dot && git add . && git status && git commit -m Backup && git push && cd -
-	cp -r ~/.dot/config/nvim/* ~/.vimrc.git
-	cp ~/.dot/config/tmux/tmux.conf ~/.vimrc.git/
-	cp ~/.zshrc ~/.vimrc.git/zshrc
-	cd ~/.vimrc.git && git add . && git status && git commit -m Backup && git push && cd -
+	cd .init
+	cp -r ~/.config/nvim/* ./
+	cp ~/tmux.conf ./tmux.conf
+	cp ~/.zshrc ./zshrc
+	git add . && git status && git commit -m Backup && git push && cd -
 }
 
 function tdvk { tmux kill-session -t tidal }
