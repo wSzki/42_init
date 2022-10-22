@@ -11,22 +11,6 @@
 #                                                                              #
 # **************************************************************************** #
 
-function del {
-	mv $@ ~/tmp
-}
-export PATH=$PATH:~/.local/bin/
-alias lok="ft_lock"
-alias lock="ft_lock"
-alias test="cd ~/containers/inc/containers_test/ && ./do.sh map"
-
-function try {
-	cd ~/containers/inc/containers_test/srcs/map
-	ls
-	c++ --std=c++98 -Wall -Wextra -Werror $1.cpp -I ../../../
-}
-
-
-
 #zmodload zsh/zprof
 
 if [ ! -d ~/.zplug ]; then
@@ -63,6 +47,17 @@ if [ -d ~/.zplug ]; then
 
 ########################## SYNTAX HIGHLIGHTING #######################
 
+ZSH_HIGHLIGHT_STYLES[path]='fg=gray, italic'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=yellow, bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=yellow, bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=yellow, bold'
+ZSH_HIGHLIGHT_STYLES[autodirectory]='fg=yellow, bold'
+ZSH_HIGHLIGHT_STYLES[global-alias]='fg=cyan'
+ZSH_HIGHLIGHT_STYLES[command-substitution]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=magenta'
+ZSH_HIGHLIGHT_STYLES[precommand]='fg=magenta'
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS+=(buffer-empty)
+
 ########################## SUBNIXR THEME SETTINGS ######################
 
 function nix_component {
@@ -93,15 +88,15 @@ bindkey    "^k" 			fzf-kill-proc-by-list
 
 ####################### ZSH COMPLETION SUBSTRING #####################
 
-#zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 zstyle ':completion:*' completer _complete
 zstyle ':completion:*' matcher-list '' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' '+l:|=* r:|=*'
 autoload -Uz compinit
 compinit
 ########################### SOURCE ###################################
 
-#source /usr/share/fzf/key-bindings.zsh
-#source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
 #source /etc/profile.d/autojump.zsh
 #source /home/wsz/.config/broot/launcher/bash/br
 
@@ -132,24 +127,23 @@ function lobster    { nix-env -iA nixpkgs.$1 }
 
 function node     { shell nodejs nodePackages.npm }
 
-alias web="docker run -it browsh/browsh "
 
 function crab       { ARGS="${@:2}"; shell $1 --run "sh -c \"$ARGS\""}
-#function docker {
-#if [[ "$1" == "reset" ]]; then
-#crab docker "echo '# DOCKER FACTORY RESET #'
-#docker kill      $(docker ps -q)
-#docker container prune       --force
-#docker image     prune --all --force
-#docker system    prune --all --force --volumes"
-#else;
-#crab docker "docker $@"
-#fi
-#}
+function docker {
+	if [[ "$1" == "reset" ]]; then
+		crab docker "echo '# DOCKER FACTORY RESET #'
+		docker kill      $(docker ps -q)
+		docker container prune       --force
+		docker image     prune --all --force
+		docker system    prune --all --force --volumes"
+	else;
+		crab docker "docker $@"
+	fi
+}
 function so     { crab so     "so  -e google $@" }
 function lnav   { crab lnav   "lnav   $@" }
 
-#function pip      { crab python310Packages.pip    "pip $@"          }
+function pip      { crab python310Packages.pip    "pip $@"          }
 function howdoi   { crab python310Packages.howdoi "howdoi $@"       }
 function npm      { crab nodePackages.npm         "npm $@"          }
 function yarn     { crab nodePackages.yarn        "yarn $@"         }
@@ -209,21 +203,12 @@ function mc         {  clam matrix-commander --store ~/.config/matrix-commander/
 alias    chloe="mc -u ploupi -m"
 #function tuir       { cap tuir}
 
-function gitap
-{
-	git add .
-	git status
-	git commit -m $@
-	git push
-
-}
-
 function back {
-	cd .init
-	cp -r ~/.config/nvim/ ./
-	cp ~/tmux.conf ./tmux.conf
-	cp ~/.zshrc ./zshrc
-	git add . && git status && git commit -m Backup && git push && cd -
+	cd ~/.dot && git add . && git status && git commit -m Backup && git push && cd -
+	cp -r ~/.dot/config/nvim/* ~/.vimrc.git
+	cp ~/.dot/config/tmux/tmux.conf ~/.vimrc.git/
+	cp ~/.zshrc ~/.vimrc.git/zshrc
+	cd ~/.vimrc.git && git add . && git status && git commit -m Backup && git push && cd -
 }
 
 function tdvk { tmux kill-session -t tidal }
@@ -323,7 +308,7 @@ alias c="xdotool key c d space asterisk asterisk Tab"
 
 ########################### TRASH-CLI ###############################
 
-#alias del="trash-put"
+alias del="trash-put"
 alias dells="trash-list"
 alias restore="trash-restore"
 alias delete="mv -t ~/.Trash/"
@@ -704,10 +689,6 @@ export CPATH=:/home/wsz/containers/inc
 export CPATH=:/home/wsz/containers/inc/utils
 export CPATH=:/home/wsz
 
-alias vim="~/nvim-linux64/bin/nvim"
 
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export CPATH=:/mnt/nfs/homes/wszurkow
-export CPATH=:/home/wsz:/mnt/nfs/homes/wszurkow/containers/inc
