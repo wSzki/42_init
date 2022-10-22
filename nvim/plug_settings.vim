@@ -375,7 +375,7 @@ let g:fzf_preview_window = 'right:70%'
 
 nnoremap <silent> <C-f> :Files<cr>
 nnoremap <silent> <C-b> :Buffers<cr>
-nnoremap <silent> <C-a> :Ag<cr>
+nnoremap <silent> <C-a> :Rg<cr>
 nnoremap <silent> <C-l> :Lines<cr>
 
 "################################################ "
