@@ -126,7 +126,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'akinsho/bufferline.nvim',         { 'tag'    : 'v2.*'              }
 
 Plug 'pandark/42header.vim',            { 'on'     : 'FortyTwoHeader'    } " 42 header
-Plug 'junegunn/fzf',                    { 'on'     : ['Files', 'Buffers', 'GFiles', 'BCommits', 'Ag', 'History', 'BLines', 'Lines'] } " FZF
+Plug 'junegunn/fzf',                    { 'on'     : ['Files', 'Buffers', 'GFiles', 'BCommits', 'Ag', 'Rg', 'History', 'BLines', 'Lines'] } " FZF
 Plug 'junegunn/fzf.vim',                { 'on'     : ['Files', 'Buffers', 'GFiles', 'BCommits', 'Ag', 'History', 'BLines', 'Lines'] } " FZF
 Plug 'chrisbra/colorizer',              { 'on'     : 'ColorToggle'       } " HEX Color display
 Plug 'junegunn/vim-easy-align',         { 'on'     : '<Plug>(EasyAlign)' } " Align
