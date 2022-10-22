@@ -219,7 +219,7 @@ function gitap
 }
 
 function back {
-	cd .init
+	cd ~/.init
 	cp -r ~/.config/nvim/ ./
 	cp ~/tmux.conf ./tmux.conf
 	cp ~/.zshrc ./zshrc
