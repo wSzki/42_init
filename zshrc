@@ -221,7 +221,7 @@ function gitap
 function back {
 	cd ~/.init
 	cp -r ~/.config/nvim/ ./
-	cp ~/tmux.conf ./tmux.conf
+	cp ~/.tmux.conf ./tmux.conf
 	cp ~/.zshrc ./zshrc
 	git add . && git status && git commit -m Backup && git push && cd -
 }
