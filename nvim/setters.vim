@@ -33,7 +33,7 @@ set foldnestmax=1
 set foldlevelstart=20
 "set autochdir
 syn on
-set cmdheight=0 " hide commandline when unused
+"set cmdheight=0 " hide commandline when unused
 "set signcolumn=number
 "set clipboard=unnamed
 
