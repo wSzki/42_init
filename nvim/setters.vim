@@ -37,6 +37,19 @@ syn on
 "set signcolumn=number
 "set clipboard=unnamed
 
+
+" Auto reload
+""""""""""""""
+set autoread
+fun! s:checktime(timer_id)
+    for buf in filter(map(getbufinfo(), {_, v -> v.bufnr}), {_, v -> buflisted(v)})
+        echom buf
+        exe 'checktime' buf
+    endfor
+    call timer_start(3000, function('s:checktime'))
+endfun
+call timer_start(3000, function('s:checktime'))
+
 "Indentation
 """""""""""""
 filetype indent on

@@ -109,7 +109,7 @@ fi
 ######################## TMUX ###################################
 
 #if [ "$TMUX" = "" ]; then tmux; fi
-alias tmux="tmux attach-session || tmux"
+#alias tmux="tmux attach-session || tmux"
 
 ######################### HISTORY ###################################
 
@@ -171,7 +171,7 @@ function fltrdr   { crab fltrdr                   "fltrdr --config-base ~/.dot/c
 function clam()     { ARGS=$@; shell $1 --run "$ARGS" }
 
 function gotop      { clam gotop      $@ }
-function htop       { clam htop       $@ }
+#function htop       { clam htop       $@ }
 function sysz       { clam sysz       $@ }
 function glances    { clam glances    $@ }
 function zenith     { clam zenith     $@ }
@@ -179,7 +179,7 @@ function glow       { clam glow       $@ }
 function kmon       { clam kmon       $@ }
 function cointop    { clam cointop    $@ }
 function scrcpy     { clam scrcpy     $@ }
-function firefox    { clam firefox    $@ }
+#function firefox    { clam firefox    $@ }
 function tmpmail    { clam tmpmail    $@ }
 function vlc        { clam vlc        $@ }
 function bmon       { clam bmon       $@ }
